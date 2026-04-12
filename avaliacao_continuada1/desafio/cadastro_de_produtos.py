@@ -43,7 +43,7 @@
 # parâmetros índices de produtos existentes.
 
 produtos = [
-  {'nome': 'Fatia de Bolo', 'preco': 20.00}
+  {'nome': 'Fatia de Bolo', 'preco': 20.00},
   {'nome': 'Pão na chapa', 'preco': 12.00},
   {'nome': 'Misto quente', 'preco': 15.00},
   {'nome': 'Café expresso', 'preco': 12.00},
@@ -55,24 +55,32 @@ produtos = [
 def listarProdutos():
     if(len(produtos) == 0):
         print('Não tem produtos cadastrados')
-    for p in produtos:
-        print(f'{p['nome']} ... R$ {p['preco']:.2f}')
+    else:
+        for i in range(len(produtos)):
+            p = produtos[i]
+            print(f"{i} - {p['nome']} ... R$ {p['preco']:.2f}")
         
         
 def adicionarProduto(produto):
-    return 
+    produtos.append(produto)
+    return True
 
 
 def buscarProduto(produtoNome):
-    return 
+    for i in range(len(produtos)):
+        if produtos[i]['nome'] == produtoNome:
+           return i
+    return None
 
 
 def atualizarProduto(indice, produto):
-    return 
+    produtos[indice] = produto
+    return True
 
 
 def removerProduto(indice):
-    return 
+    produtos.pop(indice)
+    return True
 
 
 
@@ -89,9 +97,10 @@ while(opcao != '0'):
     print('5 - Remover Produto')
     print('0 - Sair')
     print('========================================')
+
+    opcao = input('Opção desejada:')
     
     if(opcao == '1'): 
-        print()
         print('LISTA DE PRODUTOS ======================')
         listarProdutos()
     
@@ -101,21 +110,34 @@ while(opcao != '0'):
         nome = input('Nome:')
         preco = float(input('Preço:'))
         adicionarProduto({'nome': nome, 'preco': preco})
-        print()
+        print('Produto adicionado')
         print('LISTA DE PRODUTOS ======================')
         listarProdutos()
     
     elif(opcao == '3'): 
          print('BUSCAR PRODUTO =========================')
+         nome = input('Busque o produto desejado:')
+         indice = buscarProduto(nome)
+
+         if indice == None:
+            print('Produto não encontrado')
+         else:
+            print('Produto encontrado', produtos[indice])
+
     
     elif(opcao == '4'): 
          print('ATUALIZAR PRODUTO ======================')
+         indice = (int(input('indice do produto: ')))
+         nome = input('Novo nome')
+         preco = float(input('Novo preço: '))
+         atualizarProduto(indice, {'nome': nome, 'preco': preco})
+         print('Produto atualizado')
     
     elif(opcao == '5'): 
          print('REMOVER PRODUTO ========================')
+         indice = int(input('índice do produto: '))
+         removerProduto(indice)
+         print('Produto removido')
     
     elif(opcao != None): 
         print('Opção não existe')    
-    
-    print()
-    opcao = input('Opção desejada:')
