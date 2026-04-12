@@ -42,7 +42,15 @@
 # IMPORTANTE: Ignore os erros de execução. Em funções como atualizar e remover, apenas passe como
 # parâmetros índices de produtos existentes.
 
-produtos = [] #Exemplo de item {nome: Arroz, preco: 30.00}
+produtos = [
+  {'nome': 'Fatia de Bolo', 'preco': 20.00}
+  {'nome': 'Pão na chapa', 'preco': 12.00},
+  {'nome': 'Misto quente', 'preco': 15.00},
+  {'nome': 'Café expresso', 'preco': 12.00},
+  {'nome': 'Capuccino', 'preco': 18.00},
+  {'nome': 'Café Latte', 'preco': 18.00}
+
+] #Exemplo de item {nome: Arroz, preco: 30.00}
 
 def listarProdutos():
     if(len(produtos) == 0):
